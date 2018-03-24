@@ -3,9 +3,6 @@ var Twitter = require('twitter-node-client').Twitter;
 var mysql = require('mysql');
 var port = process.env.PORT;
 
-console.log("PROCESS ENV PORT :" + port);
-console.log(process);
-
 //CONNECTION TO PROJECT DB
 var con = mysql.createConnection({
   host: "y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
@@ -154,4 +151,4 @@ http.createServer(function(req, res) {
     console.log('No request sent to server. \n method: ' + req.method);
   }
 }).listen(port, "127.0.0.1");
-console.log('Server running at http://127.0.0.1:8124/');
+console.log('Server running at ' + port);
