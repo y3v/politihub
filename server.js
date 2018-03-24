@@ -12,7 +12,7 @@ var con = mysql.createConnection({
 });
 con.connect(function(err) {
   if (err) throw err;
-  console.log('Connected to db!');
+  console.log('Connected to db!!');
 })
 
 // TWITTER CONFIG HTTP. DEFINED IN THE TWITTER APP DASHBOARD
