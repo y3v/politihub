@@ -1,7 +1,7 @@
 var http = require('http')
 var Twitter = require('twitter-node-client').Twitter;
 var mysql = require('mysql');
-var port = process.env.PORT;
+var port = process.env.PORT || 8080;
 
 //CONNECTION TO PROJECT DB
 var con = mysql.createConnection(process.env.JAWSDB_URL);
