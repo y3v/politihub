@@ -1,6 +1,7 @@
 var http = require('http')
 var Twitter = require('twitter-node-client').Twitter;
 var mysql = require('mysql');
+var port = process.env.PORT;
 
 //CONNECTION TO PROJECT DB
 var con = mysql.createConnection({
@@ -20,7 +21,7 @@ var config = {
   "consumerSecret": "sUbT3iX5yMJ3MrlMP1K3qql6Rbel7B1RBbk8oGGB9nB8beveem",
   "accessToken": "823606665790504960-wpi7dgXLST2nZ1S6n8bbpSFVLHhGU2P",
   "accessTokenSecret": "nVbAFiwbRDoPWMEJpdYB6V1jAVk9zBrlaTqC5F6u1RRhN",
-  "callBackUrl": "http://127.0.0.1:8124/"
+  "callBackUrl": "http://127.0.0.1:" + port + "/";
 }
 var twitter = new Twitter(config)
 
@@ -149,5 +150,5 @@ http.createServer(function(req, res) {
   } else {
     console.log('No request sent to server. \n method: ' + req.method);
   }
-}).listen(8124, "127.0.0.1");
+}).listen(port, "127.0.0.1");
 console.log('Server running at http://127.0.0.1:8124/');
