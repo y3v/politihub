@@ -3,8 +3,16 @@ var Twitter = require('twitter-node-client').Twitter;
 var mysql = require('mysql');
 var port = process.env.PORT;
 
+console.log("PROCESS ENV PORT :" + port);
+console.log(process);
+
 //CONNECTION TO PROJECT DB
-var con = mysql.createConnection(process.env.JAWSDB_URL);
+var con = mysql.createConnection({
+  host: "y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  user: "cdbx99qz6cw8enxz",
+  password: "eyw5ngja916yf0m3",
+  database: "vnedp4katazzzuun"
+});
 con.connect(function(err) {
   if (err) throw err;
   console.log('Connected to db!!');
@@ -145,5 +153,5 @@ http.createServer(function(req, res) {
   } else {
     console.log('No request sent to server. \n method: ' + req.method);
   }
-}).listen(port);
+}).listen(port, "127.0.0.1");
 console.log('Server running at http://127.0.0.1:8124/');
