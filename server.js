@@ -4,12 +4,7 @@ var mysql = require('mysql');
 var port = process.env.PORT;
 
 //CONNECTION TO PROJECT DB
-var con = mysql.createConnection({
-  host: "y06qcehxdtkegbeb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-  user: "cdbx99qz6cw8enxz",
-  password: "eyw5ngja916yf0m3",
-  database: "vnedp4katazzzuun"
-});
+var con = mysql.createConnection(process.env.JAWSDB_URL);
 con.connect(function(err) {
   if (err) throw err;
   console.log('Connected to db!!');
