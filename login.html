@@ -1,0 +1,21 @@
+<form id="login">
+  <div>
+    <label>Username:</label>
+    <input type="text" id="username" ng-model="username"/>
+  </div>
+  <div>
+    <label>Password:</label>
+    <input type="password" id="password" ng-model="password"/>
+  </div>
+  <div>
+    <button ng-click="validate()">Login</button>
+  </div>
+  <div>
+    <p ng-model="messages" style="color:red;font-size:13px;text-align:center">
+      {{messages}}
+    </p>
+  </div>
+  <div>
+    <a href="#!signup">No Account? Click here to sign up now!</a>
+  </div>
+</form>

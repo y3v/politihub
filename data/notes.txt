@@ -1,0 +1,21 @@
+db Politician
+table {
+  id
+  legalName,
+  twitterAtName,
+  facebookId,
+  instagramId,
+
+}
+
+user {
+  firstname,
+  lastname,
+  username,
+  password
+}
+
+user_politician {
+ userId
+ politicianId
+}

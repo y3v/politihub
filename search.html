@@ -1,0 +1,19 @@
+
+      <div class="mySearch">
+        <form>
+          <fieldset>
+            <label>Find your Politician</label>
+            <angucomplete-alt id="pol-search"
+              placeholder="Search politician"
+              pause="400"
+              selected-object="displayTweets"
+              remote-url="http://127.0.0.1:8124/?test="
+              remote-url-response-formatter="responseFormatter"
+              remote-url-data-field="data"
+              title-field="legalName"
+              description-field="twitterAtName"/>
+          </fieldset>
+          <div id="feed" class="">
+          </div>
+        </form>
+      </div>
