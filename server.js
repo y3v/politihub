@@ -36,7 +36,6 @@ express().use(express.static(path.join(__dirname, 'public')))
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-
     // ------- CALLBACK FUNCTIONS -------
     var success = function(data) {
       console.log('Data success!');
@@ -49,7 +48,7 @@ express().use(express.static(path.join(__dirname, 'public')))
     var error = function(err, response, body) {
       console.log('ERROR [%s]', err);
     };
-    
+
     var query = req.param("query");
     console.log("FRONT PAGE!! " + query);
     con.query(query, function(err, result, fields) {
@@ -64,5 +63,50 @@ express().use(express.static(path.join(__dirname, 'public')))
     });
 
   })
+  .get('/load2', function (req, res){
+    const {
+      headers,
+      method,
+      url
+    } = req
+    res.writeHead(200, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    // ------- CALLBACK FUNCTIONS -------
+    var success = function(data) {
+      console.log('Data success!');
+      if (typeof data === 'string') {
+        res.end(data)
+      } else {
+        console.log('Data needs to be in string format');
+      }
+    };
+    var error = function(err, response, body) {
+      console.log('ERROR [%s]', err);
+    };
+    
+    console.log('url : ' + req.url);
+    var name = req.url.substring(7, req.url.length)
+    if (name.includes('%20')) {
+      name = name.split('%20').join(' ') // replaces '%20' by space character
+    }
+    var query = 'SELECT * FROM politician WHERE legalName LIKE \'%' + name + '%\';'
+    console.log(query);
+    con.query(query, function(err, result, fields) {
+      if (err) throw err;
+
+      // Needs to stringify it before passing it to success()
+      // 'bit' type in SQL returns weird stuff with this function, so we convert it here
+      var data = {
+        data: result
+      }
+      var strRes = JSON.stringify(data);
+      strRes = strRes.split('{"type":"Buffer","data":[0]}').join('false')
+      strRes = strRes.split('{"type":"Buffer","data":[1]}').join('true')
+      success(strRes);
+    });
+
+  }
   .get('/', (req, res) => res.render('index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
