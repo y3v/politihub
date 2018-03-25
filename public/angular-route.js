@@ -161,7 +161,7 @@ function tweet(atName){
     var query = '?screen_name=' + atName + '&count=10' + '&tweet_mode=extended'
 
     var ajax = new XMLHttpRequest()
-    ajax.open('GET', 'politihub-olyk.herokuapp.com/' + query, true)
+    ajax.open('GET', '/twitter/' + query, true)
     ajax.onload = tweetResponse
     ajax.send()
   };
