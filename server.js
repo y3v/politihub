@@ -27,8 +27,7 @@ express().use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('index'))
-  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
-  .get(function(req, res) {
+  .get('/', function(req, res) {
     const {
       headers,
       method,
@@ -154,3 +153,4 @@ express().use(express.static(path.join(__dirname, 'public')))
       console.log('No request sent to server. \n method: ' + req.method);
     }
   })
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
