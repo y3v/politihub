@@ -74,7 +74,7 @@ app.config(function($routeProvider) {
       console.log(auth);
       var userData = JSON.stringify(auth)
       console.log(userData);
-      ajax.open('POST', 'http://127.0.0.1:8124/:loggedIn', false)
+      ajax.open('POST', 'politihub-olyk.herokuapp.com/:loggedIn', false)
       ajax.onload = function() {
         var authResponse = JSON.parse(this.responseText);
         console.log(authResponse)
@@ -161,7 +161,7 @@ function tweet(atName){
     var query = '?screen_name=' + atName + '&count=10' + '&tweet_mode=extended'
 
     var ajax = new XMLHttpRequest()
-    ajax.open('GET', 'http://127.0.0.1:8124/' + query, true)
+    ajax.open('GET', 'politihub-olyk.herokuapp.com/' + query, true)
     ajax.onload = tweetResponse
     ajax.send()
   };
@@ -332,7 +332,7 @@ function getPolitician(name) {
   var query = 'SELECT * FROM politician WHERE legalName LIKE \'' + name + '%\';'
   console.log('query (getPolitician) : ' + query);
   var ajax = new XMLHttpRequest()
-  ajax.open('GET', 'http://127.0.0.1:8124/?query=' + query, true)
+  ajax.open('GET', 'politihub-olyk.herokuapp.com/?query=' + query, true)
   ajax.onload = function() {
     dataSet = JSON.parse(this.responseText)
     console.log(dataSet);
@@ -344,7 +344,7 @@ function getPolitician(name) {
 function getAllPolitician() {
   var query = 'SELECT * FROM politician;'
   var ajax = new XMLHttpRequest()
-  ajax.open('GET', 'http://127.0.0.1:8124/?query=' + query, true)
+  ajax.open('GET', 'politihub-olyk.herokuapp.com/?query=' + query, true)
   ajax.onload = function() {
     console.log('DB ALL POLITICIAN RESPONSE');
     console.log(JSON.parse(this.responseText));
@@ -355,13 +355,13 @@ function getAllPolitician() {
 
 function postNewUser(values) {
   var ajax = new XMLHttpRequest()
-  ajax.open('POST', 'http://127.0.0.1:8124/:added', true)
+  ajax.open('POST', 'politihub-olyk.herokuapp.com/:added', true)
   ajax.send(values)
 }
 
 function validateLogin(values) {
   var ajax = new XMLHttpRequest()
-  ajax.open('POST', 'http://127.0.0.1:8124/:loggedIn', true)
+  ajax.open('POST', 'politihub-olyk.herokuapp.com/:loggedIn', true)
   ajax.onload = function() {
     dataSet = JSON.parse(this.responseText)
     console.log(dataSet);
