@@ -354,8 +354,7 @@ function getAllPolitician() {
 
   var config = {
     params: {
-        one: value,
-        two: value
+        query : query
     }
   }
 
