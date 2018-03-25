@@ -1,7 +1,10 @@
 var http = require('http')
 var Twitter = require('twitter-node-client').Twitter;
 var mysql = require('mysql');
-var port = process.env.PORT || 8080;
+
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 5000
 
 //CONNECTION TO PROJECT DB
 var con = mysql.createConnection(process.env.JAWSDB_URL);
@@ -20,7 +23,7 @@ var config = {
 }
 var twitter = new Twitter(config)
 
-/*http.createServer(function(req, res) {
+express(function(req, res) {
   const {
     headers,
     method,
@@ -64,7 +67,7 @@ var twitter = new Twitter(config)
   */
 
   // ------- GET METHOD -------
-  /*if (req.url.includes('query')) {
+  if (req.url.includes('query')) {
     console.log('url : ' + req.url);
     var query = req.url.substring(8, req.url.length) // removes '/?query=' from the url
     query = query.split('%20').join(' ') // replaces '%20' by space character
@@ -145,5 +148,8 @@ var twitter = new Twitter(config)
   } else {
     console.log('No request sent to server. \n method: ' + req.method);
   }
-}).listen(port);*/
-console.log('Server running at ' + port);
+}).use(express.static(path.join(__dirname, 'public')))
+  .set('views', path.join(__dirname, 'views'))
+  .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`))
