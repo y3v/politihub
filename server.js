@@ -213,7 +213,7 @@ express().use(express.static(path.join(__dirname, 'public')))
     req.on('data', (chunk) => {
       //console.log('chunk : ' + chunk);
       var inputs = JSON.parse(chunk);
-      var sql = "INSERT INTO user (username,password,firstname,lastname,email,isAdmin,isLoggedIn) VALUES ('" + inputs.username + "', '" + inputs.password + "', '" + inputs.firstname + "', '" + inputs.lastname + "', '" + inputs.email + "', " + inputs.isAdmin + ", " + inputs.isLoggedIn + ")"
+      var sql = "INSERT INTO user (username,password,firstname,lastname,email,isAdmin) VALUES ('" + inputs.username + "', '" + inputs.password + "', '" + inputs.firstname + "', '" + inputs.lastname + "', '" + inputs.email + "', " + inputs.isAdmin + ")"
       //console.log(sql);
       con.query(sql, function(err, result) {
         if (err) throw err;
