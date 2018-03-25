@@ -74,7 +74,7 @@ app.config(function($routeProvider) {
       console.log(auth);
       var userData = JSON.stringify(auth)
       console.log(userData);
-      ajax.open('POST', 'politihub-olyk.herokuapp.com/:loggedIn', false)
+      ajax.open('POST', 'politihub-olyk.herokuapp.com:' + process.env.PORT + '/:loggedIn', false)
       ajax.onload = function() {
         var authResponse = JSON.parse(this.responseText);
         console.log(authResponse)
