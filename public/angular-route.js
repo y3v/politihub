@@ -332,7 +332,7 @@ function getPolitician(name) {
   var query = 'SELECT * FROM politician WHERE legalName LIKE \'' + name + '%\';'
   console.log('query (getPolitician) : ' + query);
   var ajax = new XMLHttpRequest()
-  ajax.open('GET', 'politihub-olyk.herokuapp.com/?query=' + query, true)
+  ajax.open('GET', '/twitter/?query=' + query, true)
   ajax.onload = function() {
     dataSet = JSON.parse(this.responseText)
     console.log(dataSet);
