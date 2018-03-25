@@ -174,7 +174,7 @@ express().use(express.static(path.join(__dirname, 'public')))
           var JGood = JSON.stringify(good);
           success(JGood);
         }
-      });
+      })
   })
   .post('/register', function (req, res){
 
