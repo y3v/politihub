@@ -342,7 +342,7 @@ function getPolitician(name) {
 }
 
 function getAllPolitician() {
-  var query = 'SELECT * FROM politician;'
+  /*var query = 'SELECT * FROM politician;'
   var ajax = new XMLHttpRequest()
   ajax.open('GET', query, true)
   ajax.onload = function() {
@@ -350,7 +350,17 @@ function getAllPolitician() {
     console.log(JSON.parse(this.responseText));
     allPolitician  = JSON.parse(this.responseText)
   }
-  ajax.send()
+  ajax.send()*/
+
+  var config = {
+    params: {
+        one: value,
+        two: value
+    }
+  }
+
+  $http.get('/', config)//.then(...)
+
 }
 
 function postNewUser(values) {

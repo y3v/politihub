@@ -37,7 +37,8 @@ express().use(express.static(path.join(__dirname, 'public')))
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-    console.log("FRONT PAGE!!");
+    var query = req.param("query");
+    console.log("FRONT PAGE!! " + query);
 
   })
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
