@@ -26,7 +26,6 @@ var twitter = new Twitter(config)
 express().use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/', (req, res) => res.render('index'))
   .get('/', function (req, res) {
     const {
       headers,
@@ -37,24 +36,9 @@ express().use(express.static(path.join(__dirname, 'public')))
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
-    if (req.url.includes('query')) {
-      console.log('url : ' + req.url);
-      var query = req.url.substring(8, req.url.length) // removes '/?query=' from the url
-      query = query.split('%20').join(' ') // replaces '%20' by space character
-      query = query.split('%27').join('\'') // replaces '%27' by "\'" character
-      console.log('query : ' + query);
-      // the con.query function returns a JSON object.
-      con.query(query, function(err, result, fields) {
-        if (err) throw err;
-
-        // Needs to stringify it before passing it to success()
-        // 'bit' type in SQL returns weird stuff with this function, so we convert it here
-        var strRes = JSON.stringify(result);
-        strRes = strRes.split('{"type":"Buffer","data":[0]}').join('false')
-        strRes = strRes.split('{"type":"Buffer","data":[1]}').join('true')
-        success(strRes);
-      });
-    }
+    var query = req.param("query");
+    console.log("FRONT PAGE!! " + query);
 
   })
+  .get('/', (req, res) => res.render('index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
