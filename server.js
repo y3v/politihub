@@ -138,6 +138,6 @@ express().use(express.static(path.join(__dirname, 'public')))
       tweet_mode: params[2].substring(11, params[2].length) // removes 'tweet_mode=' from string to retrieve the parameter only
     }
     twitter.getUserTimeline(data, error, success);
-  }
+  })
   .get('/', (req, res) => res.render('index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
