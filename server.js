@@ -27,7 +27,7 @@ express().use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('index'))
-  .post('/:loggedIn', function (req, res) {
+  .post('/login', function (req, res) {
     const {
       headers,
       method,
