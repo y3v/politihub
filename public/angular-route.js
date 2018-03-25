@@ -50,10 +50,26 @@ app.config(function($routeProvider) {
       }
       return data
     }
-    /*$scope.getPol = debounce(function() {
-    	console.log('IM PICKLE RIIIIICK');
-      getPolitician($scope.name)
-    }, 300);*/
+
+    function getAllPolitician() {
+      var query = 'SELECT * FROM politician;'
+      /*var ajax = new XMLHttpRequest()
+      ajax.open('GET', query, true)
+      ajax.onload = function() {
+        console.log('DB ALL POLITICIAN RESPONSE');
+        console.log(JSON.parse(this.responseText));
+        allPolitician  = JSON.parse(this.responseText)
+      }
+      ajax.send()*/
+
+      var config = {
+        params: {
+            query : query
+        }
+      }
+
+      $http.get('/', config)//.then(...)
+    }
 
   })
   .controller('login', function($scope, $location) {
@@ -341,26 +357,7 @@ function getPolitician(name) {
   ajax.send()
 }
 
-function getAllPolitician() {
-  var query = 'SELECT * FROM politician;'
-  /*var ajax = new XMLHttpRequest()
-  ajax.open('GET', query, true)
-  ajax.onload = function() {
-    console.log('DB ALL POLITICIAN RESPONSE');
-    console.log(JSON.parse(this.responseText));
-    allPolitician  = JSON.parse(this.responseText)
-  }
-  ajax.send()*/
 
-  var config = {
-    params: {
-        query : query
-    }
-  }
-
-  $http.get('/', config)//.then(...)
-
-}
 
 function postNewUser(values) {
   var ajax = new XMLHttpRequest()
