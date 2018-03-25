@@ -19,7 +19,7 @@ var config = {
   "consumerSecret": "sUbT3iX5yMJ3MrlMP1K3qql6Rbel7B1RBbk8oGGB9nB8beveem",
   "accessToken": "823606665790504960-wpi7dgXLST2nZ1S6n8bbpSFVLHhGU2P",
   "accessTokenSecret": "nVbAFiwbRDoPWMEJpdYB6V1jAVk9zBrlaTqC5F6u1RRhN",
-  "callBackUrl": "/twatter/"
+  "callBackUrl": "politihub-olyk.herokuapp.com:" + port + "/"
 }
 var twitter = new Twitter(config)
 
