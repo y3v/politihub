@@ -134,9 +134,6 @@ express().use(express.static(path.join(__dirname, 'public')))
 
       console.log("URL:::::::" + req.url);
       var params = req.url.split('&') // splits all parameters from the url into an array
-      console.log("SCREEN NAME:::::::" + params[0]);
-      console.log("COUNT:::::::" + params[1]);
-      console.log("TWEET MODE:::::::" + params[2]);
 
       var data = {
         screen_name: params[0].substring(23, params[0].length), // removes '/?screen_name=' from string to retrieve the parameter only
@@ -148,6 +145,39 @@ express().use(express.static(path.join(__dirname, 'public')))
       console.log("TWEET MODE:::::::" + data.tweet_mode);
       twitter.getUserTimeline(data, error, success);
     }
+  })
+  .post('/login', function (req, res){
+    const {
+      headers,
+      method,
+      url
+    } = req
+    res.writeHead(200, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+
+    req.on('data', (chunk) => {
+      //console.log('chunk : ' + chunk);
+      var inputs = JSON.parse(chunk);
+      var query = "SELECT * FROM user WHERE username = '" + inputs.username + "' AND password= '" + inputs.password + "';"
+      console.log(query);
+      con.query(query, function(err, result, fields) {
+        console.log("result:" + result);
+        if (result == ""){
+          var bad = {"response" : false};
+          var JBad = JSON.stringify(bad);
+          success(JBad);
+        }
+        else{
+          var good = {"response" : true};
+          var JGood = JSON.stringify(good);
+          success(JGood);
+        }
+      });
+  })
+  .post('/register', function (req, res){
+
   })
   .get('/', (req, res) => res.render('index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
