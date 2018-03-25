@@ -344,7 +344,7 @@ function getPolitician(name) {
 function getAllPolitician() {
   var query = 'SELECT * FROM politician;'
   var ajax = new XMLHttpRequest()
-  ajax.open('GET', '/', true)
+  ajax.open('GET', '/test', true)
   /*ajax.onload = function() {
     console.log('DB ALL POLITICIAN RESPONSE');
     console.log(JSON.parse(this.responseText));
