@@ -344,7 +344,7 @@ function getPolitician(name) {
 function getAllPolitician() {
   var query = 'SELECT * FROM politician;'
   var ajax = new XMLHttpRequest()
-  ajax.open('GET', 'politihub-olyk.herokuapp.com/?query=' + query, true)
+  ajax.open('GET', query, true)
   ajax.onload = function() {
     console.log('DB ALL POLITICIAN RESPONSE');
     console.log(JSON.parse(this.responseText));
