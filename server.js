@@ -36,6 +36,20 @@ express().use(express.static(path.join(__dirname, 'public')))
       'Content-Type': 'application/json',
       'Access-Control-Allow-Origin': '*'
     });
+
+    // ------- CALLBACK FUNCTIONS -------
+    var success = function(data) {
+      console.log('Data success!');
+      if (typeof data === 'string') {
+        res.end(data)
+      } else {
+        console.log('Data needs to be in string format');
+      }
+    };
+    var error = function(err, response, body) {
+      console.log('ERROR [%s]', err);
+    };
+    
     var query = req.param("query");
     console.log("FRONT PAGE!! " + query);
     con.query(query, function(err, result, fields) {
