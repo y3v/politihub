@@ -38,6 +38,16 @@ express().use(express.static(path.join(__dirname, 'public')))
     });
     var query = req.param("query");
     console.log("FRONT PAGE!! " + query);
+    con.query(query, function(err, result, fields) {
+      if (err) throw err;
+
+      // Needs to stringify it before passing it to success()
+      // 'bit' type in SQL returns weird stuff with this function, so we convert it here
+      var strRes = JSON.stringify(result);
+      strRes = strRes.split('{"type":"Buffer","data":[0]}').join('false')
+      strRes = strRes.split('{"type":"Buffer","data":[1]}').join('true')
+      success(strRes);
+    });
 
   })
   .get('/', (req, res) => res.render('index'))
