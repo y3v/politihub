@@ -134,14 +134,18 @@ express().use(express.static(path.join(__dirname, 'public')))
 
       console.log("URL:::::::" + req.url);
       var params = req.url.split('&') // splits all parameters from the url into an array
+      console.log("SCREEN NAME:::::::" + params[0]);
+      console.log("COUNT:::::::" + params[1]);
+      console.log("TWEET MODE:::::::" + params[2]);
+
       var data = {
         screen_name: params[0].substring(14, params[0].length), // removes '/?screen_name=' from string to retrieve the parameter only
-        console.log("SCREEN NAME:::::::" + params[0]);
         count: params[1].substring(6, params[1].length), // removes 'count=' from string to retrieve the parameter only
-        console.log("COUNT:::::::" + params[1]);
         tweet_mode: params[2].substring(11, params[2].length) // removes 'tweet_mode=' from string to retrieve the parameter only
-        console.log("TWEET MODE:::::::" + params[2]);
       }
+      console.log("SCREEN NAME:::::::" + data.screen_name);
+      console.log("COUNT:::::::" + data.count);
+      console.log("TWEET MODE:::::::" + data.tweet_mode);
       twitter.getUserTimeline(data, error, success);
     }
   })
