@@ -108,36 +108,38 @@ express().use(express.static(path.join(__dirname, 'public')))
     });
 
   })
-  get('/twitter', function (req, res){
-    const {
-      headers,
-      method,
-      url
-    } = req
-    res.writeHead(200, {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*'
-    });
-    // ------- CALLBACK FUNCTIONS -------
-    var success = function(data) {
-      console.log('Data success!');
-      if (typeof data === 'string') {
-        res.end(data)
-      } else {
-        console.log('Data needs to be in string format');
-      }
-    };
-    var error = function(err, response, body) {
-      console.log('ERROR [%s]', err);
-    };
+  .get('/twitter', function (req, res){
+    {
+      const {
+        headers,
+        method,
+        url
+      } = req
+      res.writeHead(200, {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      });
+      // ------- CALLBACK FUNCTIONS -------
+      var success = function(data) {
+        console.log('Data success!');
+        if (typeof data === 'string') {
+          res.end(data)
+        } else {
+          console.log('Data needs to be in string format');
+        }
+      };
+      var error = function(err, response, body) {
+        console.log('ERROR [%s]', err);
+      };
 
-    var params = req.url.split('&') // splits all parameters from the url into an array
-    var data = {
-      screen_name: params[0].substring(14, params[0].length), // removes '/?screen_name=' from string to retrieve the parameter only
-      count: params[1].substring(6, params[1].length), // removes 'count=' from string to retrieve the parameter only
-      tweet_mode: params[2].substring(11, params[2].length) // removes 'tweet_mode=' from string to retrieve the parameter only
+      var params = req.url.split('&') // splits all parameters from the url into an array
+      var data = {
+        screen_name: params[0].substring(14, params[0].length), // removes '/?screen_name=' from string to retrieve the parameter only
+        count: params[1].substring(6, params[1].length), // removes 'count=' from string to retrieve the parameter only
+        tweet_mode: params[2].substring(11, params[2].length) // removes 'tweet_mode=' from string to retrieve the parameter only
+      }
+      twitter.getUserTimeline(data, error, success);
     }
-    twitter.getUserTimeline(data, error, success);
   })
   .get('/', (req, res) => res.render('index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
