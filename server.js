@@ -87,7 +87,7 @@ express().use(express.static(path.join(__dirname, 'public')))
     };
 
     console.log('url : ' + req.url);
-    var name = req.url.substring(7, req.url.length)
+    var name = req.url.substring(14, req.url.length)
     if (name.includes('%20')) {
       name = name.split('%20').join(' ') // replaces '%20' by space character
     }
