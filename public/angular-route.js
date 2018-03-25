@@ -345,11 +345,11 @@ function getAllPolitician() {
   var query = 'SELECT * FROM politician;'
   var ajax = new XMLHttpRequest()
   ajax.open('GET', '/?query=' + query, true)
-  /*ajax.onload = function() {
+  ajax.onload = function() {
     console.log('DB ALL POLITICIAN RESPONSE');
     console.log(JSON.parse(this.responseText));
     allPolitician  = JSON.parse(this.responseText)
-  }*/
+  }
   ajax.send()
 }
 
