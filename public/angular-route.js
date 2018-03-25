@@ -144,7 +144,6 @@ app.config(function($routeProvider) {
           userValues.email = $scope.email;
 
         userValues.isAdmin = false; // isAdmin
-        userValues.isLoggedIn = true; // isLoggedIn
         console.log('NEW USER : ' + JSON.stringify(userValues));
         postNewUser(JSON.stringify(userValues))
         $location.path('/main.html/:added');
