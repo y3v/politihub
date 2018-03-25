@@ -344,12 +344,12 @@ function getPolitician(name) {
 function getAllPolitician() {
   var query = 'SELECT * FROM politician;'
   var ajax = new XMLHttpRequest()
-  ajax.open('GET', '/test', true)
-  /*ajax.onload = function() {
+  ajax.open('GET', '/load?query=' + query, true)
+  ajax.onload = function() {
     console.log('DB ALL POLITICIAN RESPONSE');
     console.log(JSON.parse(this.responseText));
     allPolitician  = JSON.parse(this.responseText)
-  }*/
+  }
   ajax.send()
 }
 

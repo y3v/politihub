@@ -26,7 +26,7 @@ var twitter = new Twitter(config)
 express().use(express.static(path.join(__dirname, 'public')))
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
-  .get('/test', function (req, res) {
+  .get('/load', function (req, res) {
     const {
       headers,
       method,
