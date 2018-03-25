@@ -85,7 +85,7 @@ express().use(express.static(path.join(__dirname, 'public')))
     var error = function(err, response, body) {
       console.log('ERROR [%s]', err);
     };
-    
+
     console.log('url : ' + req.url);
     var name = req.url.substring(7, req.url.length)
     if (name.includes('%20')) {
@@ -107,6 +107,6 @@ express().use(express.static(path.join(__dirname, 'public')))
       success(strRes);
     });
 
-  }
+  })
   .get('/', (req, res) => res.render('index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
