@@ -20,7 +20,7 @@ var config = {
 }
 var twitter = new Twitter(config)
 
-http.createServer(function(req, res) {
+/*http.createServer(function(req, res) {
   const {
     headers,
     method,
@@ -64,7 +64,7 @@ http.createServer(function(req, res) {
   */
 
   // ------- GET METHOD -------
-  if (req.url.includes('query')) {
+  /*if (req.url.includes('query')) {
     console.log('url : ' + req.url);
     var query = req.url.substring(8, req.url.length) // removes '/?query=' from the url
     query = query.split('%20').join(' ') // replaces '%20' by space character
@@ -145,5 +145,5 @@ http.createServer(function(req, res) {
   } else {
     console.log('No request sent to server. \n method: ' + req.method);
   }
-}).listen(port);
+}).listen(port);*/
 console.log('Server running at ' + port);
