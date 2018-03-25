@@ -93,7 +93,7 @@ app.config(function($routeProvider) {
     $rootScope.menuChange = "#!account";
     $location.path('/');
   })
-  .controller('signup', function($scope, $location) {
+  .controller('/signup/', function($scope, $location) {
     $scope.validateSignUp = function(){
       var valid = 0;
       if (angular.isUndefined($scope.username) || $scope.username.length < 4){

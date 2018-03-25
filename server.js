@@ -188,8 +188,38 @@ express().use(express.static(path.join(__dirname, 'public')))
       });
     })
   })
-  .post('/register', function (req, res){
+  .post('/signup', function (req, res){
+    const {
+      headers,
+      method,
+      url
+    } = req
+    res.writeHead(200, {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*'
+    });
+    var success = function(data) {
+      console.log('Data success!');
+      if (typeof data === 'string') {
+        res.end(data)
+      } else {
+        console.log('Data needs to be in string format');
+      }
+    };
+    var error = function(err, response, body) {
+      console.log('ERROR [%s]', err);
+    };
 
+    req.on('data', (chunk) => {
+      //console.log('chunk : ' + chunk);
+      var inputs = JSON.parse(chunk);
+      var sql = "INSERT INTO user (username,password,firstname,lastname,email,isAdmin,isLoggedIn) VALUES ('" + inputs.username + "', '" + inputs.password + "', '" + inputs.firstname + "', '" + inputs.lastname + "', '" + inputs.email + "', " + inputs.isAdmin + ", " + inputs.isLoggedIn + ")"
+      //console.log(sql);
+      con.query(sql, function(err, result) {
+        if (err) throw err;
+        console.log("1 record inserted, ID: " + result.insertId);
+      });
+    })
   })
   .get('/', (req, res) => res.render('index'))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
